@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class BWController : MonoBehaviour {
 
-	public UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl controller;
 	// Generic properties of class
 	[Header("Generic Class Settings")]
 	public bool isDark = false;
