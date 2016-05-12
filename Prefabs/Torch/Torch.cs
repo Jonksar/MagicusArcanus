@@ -29,7 +29,7 @@ public class Torch : MonoBehaviour {
 			GameObject childFire = (GameObject)Instantiate (fire, transform.position, transform.rotation);
 			childFire.name = "Fire";
 			childFire.transform.parent = transform;
-			childFire.transform.localPosition +=  new Vector3(0f, 2f, 0.95f);
+			childFire.transform.localPosition +=  new Vector3(0f, 0.1f, 0.12f);
 			selfLight = getChildGameObject(childFire, "Point light").GetComponent<Light>();
 			childFire.transform.localScale = Vector3.one;
 			// when we should not have fire and we have one;
