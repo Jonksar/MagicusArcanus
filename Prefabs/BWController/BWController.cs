@@ -33,12 +33,21 @@ public class BWController : MonoBehaviour {
 	
 	private GameObject wolfAndTheLamb;
 
+	// Power of the element
+	[Header("Power of the Element Settings")]
+	public float powerOfLightRange = 3f;
+	public float powerOfLightMaxRange = 10f;
 
+	private bool isInDark = true;
 
+	private GameObject powerOfTheElement;
+
+	// Relic capture variables
 	private bool isSwitching;
 	private float startedSwitching;
 
-	// Use this for initialization
+
+
 	void Start () {
 		// Generic 
 		isSwitching = false;
@@ -52,6 +61,9 @@ public class BWController : MonoBehaviour {
 
 		// Wolf and the Lamb
 		wolfAndTheLamb = getChildGameObject (gameObject, "Wolf and the lamb");
+
+		// Power of the element
+		powerOfTheElement = getChildGameObject (gameObject, "Power of the Element");
 		
 	}
 	
@@ -88,6 +100,10 @@ public class BWController : MonoBehaviour {
 			if (Input.GetKey (KeyCode.Q)) {
 				lightsOn = !lightsOn;
 			}
+			// Toggle Wolf and The Lamb
+			if (Input.GetKey(KeyCode.W)) {
+				lamb = !lamb;
+			}
 		// When player is dark
 		} else {
 
@@ -95,11 +111,15 @@ public class BWController : MonoBehaviour {
 			if (Input.GetKey (KeyCode.Q)) {
 				lightsOff = !lightsOff;
 			}
+			if (Input.GetKey(KeyCode.W)) {
+				wolf = !wolf;
+			}
 		}
 
 	// Do magic
 		LightsOnOffAbility ();
 		WolfAndTheLambAbility ();
+		PowerOfTheElementAbility ();
 	}
 
 	static public GameObject getChildGameObject(GameObject fromGameObject, string withName) {
@@ -143,6 +163,11 @@ public class BWController : MonoBehaviour {
 
 			}
 		}
+	}
 
+	public void PowerOfTheElementAbility() {
+		isInDark = powerOfTheElement.GetComponent<PowerOfTheElement> ()
+			.IsInDark (GameObject.FindGameObjectsWithTag("Torch"), transform.position);
+		//powerOfTheElement.GetComponent<PowerOfTheElement> ().getTeleportPos (GameObject.FindGameObjectsWithTag ("Torch"));
 	}
 }
